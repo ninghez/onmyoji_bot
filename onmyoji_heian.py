@@ -9,17 +9,9 @@ from PIL import Image
 width,height=pyautogui.size()
 #width: 1920, height: 1080
 
-root_path=r"E:\Other\Python Programs\onmyoji\\"
 
+root_path="" #img path if not in same folder
 
-load_x0=976
-load_y0=210
-load_x1=1026
-load_y1=275
-
-load_x=1001
-load_y=243
-dura=0.5
 
 
 def see_image(path):
@@ -29,10 +21,18 @@ def see_image(path):
 def click(x,y,dura):
     pyautogui.click(x,y,duration=dura)
     
+
 def heian_story_reset(chapter):
-    
+	""" 
+	reset chapter 1 of heian story - orochi
+	will beep at displaying shikigami
+	image recognition not implemented
+	"""
+    load_x=1001
+	load_y=243
+	dura=0.5
     time.sleep(2)
-    #moving to load    print(load_x,load_y)
+    #moving to load    
     #click to load
     click(load_x,load_y,dura)
 
@@ -40,7 +40,7 @@ def heian_story_reset(chapter):
     
     #click at chapter X
     if(chap==1)click(load_x,load_y,dura)
-    else: click()
+    else: click(load_x,load_y,dura)
     #click at confirm
     pyautogui.click(1091,622,duration=dura)
     
@@ -82,11 +82,11 @@ def heian_story_reset(chapter):
     #if not wanted
     time.sleep(3)   
     click(161,236,dura)
-# 
-# img_path="img/heian_skip_ip.png"
-# find_skip=pyautogui.locateOnScreen(root_path+img_path,grayscale=True,minSearchTime=3)
-# 
-# print(find_skip)
 
-chap=2
-for i in range(10): heian_story_reset(chap)
+
+def main():
+	chap=1
+	for i in range(10): heian_story_reset(chap)
+
+if __name__== "__main__":
+	main()
