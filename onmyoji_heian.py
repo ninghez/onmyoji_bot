@@ -23,14 +23,14 @@ def click(x,y,dura):
     
 
 def heian_story_reset(chapter):
-	""" 
-	reset chapter 1 of heian story - orochi
-	will beep at displaying shikigami
-	image recognition not implemented
-	"""
+    """ 
+    reset chapter 1 of heian story - orochi
+    will beep at displaying shikigami
+    image recognition not implemented
+    """
     load_x=1001
-	load_y=243
-	dura=0.5
+    load_y=243
+    dura=0.6
     time.sleep(2)
     #moving to load    
     #click to load
@@ -39,16 +39,17 @@ def heian_story_reset(chapter):
     pyautogui.moveTo(load_x,load_y,duration=dura)
     
     #click at chapter X
-    if(chap==1)click(load_x,load_y,dura)
-    else: click(load_x,load_y,dura)
+    if(chapter==1): click(load_x,load_y,dura)
+    elif(chapter==2): click(996,413,dura)
     #click at confirm
     pyautogui.click(1091,622,duration=dura)
     
     #loading scene
-    time.sleep(4)
+    time.sleep(4.5)
     
     #click to expand quest and to go to quest (twice)
     pyautogui.click(1785,324,clicks=2,interval=dura)
+    time.sleep(0.5)
     #click skip
     click(1281,730,dura)
     #click confirm skip
@@ -63,12 +64,19 @@ def heian_story_reset(chapter):
     #click ready (pre-battle)
     click(1662,855,dura)
     #wait for battle to end
-    time.sleep(36)
+    time.sleep(40)
     
     #click result and skip screen, pick shiki
     click(640,519,dura)
     time.sleep(3)
-    pyautogui.click(640,519,clicks=14,interval=0.3)
+    pyautogui.click(640,519,clicks=10,interval=0.3)
+    #click skip
+    click(1281,730,dura)
+    #click confirm skip
+    click(992,657,dura)
+
+    #click select shiki
+    click(640,519,dura)
     #click to confirm picking shiki
     click(996,762,dura)
     #shiki shown, beep
@@ -85,8 +93,9 @@ def heian_story_reset(chapter):
 
 
 def main():
-	chap=1
-	for i in range(10): heian_story_reset(chap)
+    print(pyautogui.position())
+    chap=2
+    for i in range(10): heian_story_reset(chap)
 
 if __name__== "__main__":
-	main()
+    main()
